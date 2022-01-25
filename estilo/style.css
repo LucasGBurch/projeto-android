@@ -1,0 +1,216 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+@font-face {
+    font-family: 'Android';
+    src: url('../fontes/idroid.otf') format('opentype');
+    font-weight: normal;
+}
+
+/*
+Guanabara usou um :root{} para armazenar sua paleta de cores em VARIÁVEIS!!
+Fiz ajustando diretamente pelo rgb do VSCode, mas fica a nota desse método de variáveis:
+sintaxe: "--var: código da cor;" e na seleção para as tag: "var(--var)"
+
+Neste projeto, foi mais importante usar para as fontes (incluindo os imports acima):
+*/
+
+:root {
+    /*--cor1: código;
+    --cor2: código; ... ficaria assim para projetos
+    que podem necessitar mudança facilitada para as cores*/
+
+    --fonte-padrao: Arial, Verdana, Helvetica, sans-serif;
+    --fonte-destaque: 'Bebas Neue', cursive;
+    --fonte-android: 'Android', cursive
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+} /*Configurações globais: root e asterisco*/
+
+body {
+    background-color: rgb(171, 233, 198);
+    font-family: var(--fonte-padrao);
+    margin: auto;
+}
+
+a.externo::after { /*Embora no meu pc a correntinha não apareça :/ */
+    content: '\1F517\00A0';
+}
+
+header {
+    background-image: linear-gradient(to bottom, rgb(0, 212, 0), rgb(0, 104, 0));
+    color: white; /*O <h1> e o <p> dentro dele também herdam essa cor.*/
+    min-height: 150px;
+    text-align: center;
+    padding: 20px;
+    padding-top: 40px;
+    min-width: 300px;
+}
+
+header > h1 {
+    margin-bottom: 20px; /*Distanciar do h2*/
+    font-family: var(--fonte-destaque);
+    font-size: 3em;
+    font-weight: normal; /* os h já têm negrito (bold), fica melhor/suave tirando.*/
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.466); /*Sombra preta e transparente*/
+}
+
+header > p {
+    font-family: var(--fonte-padrao);
+    font-size: 1.2em;
+    max-width: 600px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: auto; /*transforma em block pra centralizar*/
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.466);
+}
+
+nav {
+    background-color: rgb(0, 120, 0);
+    color: white;
+    padding: 20px;
+    box-shadow: 0px 7px 7px rgba(0, 0, 0, 0.308);
+    /*essa shadow precisei pegar da aula, pois meu ctrl+i do chrome não tem a função criadora*/
+    text-align: left;
+    min-width: 300px;
+}
+
+nav > a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+nav > a:hover {
+    background-color: rgb(18, 61, 14);
+    color: rgb(25, 255, 4); /*Cores contrastando para ficar mais visível no hover!*/
+    text-decoration: underline;
+    transition-duration: 0.5s; /*Esta dica foi genial; transition deixa links suaves*/
+    /*preferi cor mais discreta e manter um underline, sem border-radius*/
+}
+
+main {
+    background-color: white;
+    /*width: 800px; PARA FICAR RESPONSIVO, TROCA-SE PELO MIN-MAX ABAIXO:*/
+    min-width: 300px;
+    max-width: 1000px;
+    margin: auto;
+    margin-bottom: 30px;
+    text-align: justify;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.507);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+main p {
+    margin: 15px 0px; /* para ter margem em cima e embaixo dos parágrafos*/
+    text-indent: 30px; /*o famoso "Parágrafo da nova linha" */
+    font-size: 1em;
+    line-height: 2em; /*espaçamento entre linhas*/
+} /*align justify já fiz no main*/
+
+main strong {
+    color: rgb(0, 120, 0);
+    font-weight: bold;
+}
+
+main a {
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(0, 120, 0);
+    background-color: rgb(19, 255, 19);
+    padding: 2px 5px;
+}
+
+main a:hover {
+    text-decoration: underline;
+    background-color: rgb(115, 182, 115);;
+}
+
+main img {
+    width: 100%;
+}
+
+main img.pequena {
+    max-width: 350px;
+    display: block;
+    margin: auto; /*Imagem é linha, por isso precisa mudar o display para block para centralizar!!!*/
+}
+
+article > h1 {
+    font-family: var(--fonte-android);
+    color: rgb(0, 77, 0);
+    font-weight: normal;
+    font-size: 1.8em;
+}
+
+article > h2 {
+    font-family: var(--fonte-android);
+    font-weight: normal;
+    color: rgb(0, 146, 0);
+    background-image: linear-gradient(to right, rgb(144, 238, 144), transparent);
+    text-indent: 6px;
+}
+
+section.video {
+    /*Fiquei feliz por ter telegrafado o macete da div no vídeo antes da aula sobre ele*/
+    background-color: rgb(0, 104, 0);
+    padding: 20px;
+    margin: 0px -20px 30px -20px;
+    /*esta margin bati na trave; precisava do 30px bottom pra separar da tag aside*/
+} /*prof fez um padding bottom 50px e posição relative*/
+
+section.video > iframe {
+    width: 100%; /*Era por culpa disto que o body deixava espaço na direita ao diminuir largura u.u' */
+    display: block;
+    margin: auto;
+} /*aqui ele usou gambiarra com posição absoluta e 5% de top e left*/
+
+aside {
+    background-color: lightgreen;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.384);
+}
+
+aside > ul {
+    list-style-type: '\2714\00A0\00A0'; /*obtido no emojipedia (00A0 são espaços digitados mesmo)*/
+    list-style-position: inside; /*a bolinha da lista costuma ficar outside por padrão*/
+    columns: 2; /*Dividindo a lista em colunas*/
+}
+
+aside > h3 {
+    background-color: rgb(86, 141, 86);
+    color: white;
+    padding: 10px;
+    border-radius: 10px 10px 0px 0px;
+    margin: -10px -10px 0px -10px;
+    /*Margem vazando pro h3 cobrir o aside: top right down left (tipo relógio)*/
+}
+
+footer {
+    background-color: rgb(0, 104, 0);
+    color: white;
+    font-size: 0.8em;
+    text-align: center;
+    padding: 5px;
+    margin: auto;
+    min-width: 300px;
+}
+
+footer a { /*mesma coisa que footer > p > a */
+    color: white;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: rgb(60, 240, 44);
+    text-decoration: underline;
+}
